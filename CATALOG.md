@@ -13,7 +13,20 @@ Format for entries:
 
 (These live in `~/.grok/skills/` and have copies under `imported/`)
 
-_None yet — we are just setting up the system._
+### statistical-analyst
+- **Source**: alirezarezvani/claude-skills (engineering category)
+- **Imported**: 2026-05-27
+- **Tuned**: Yes — heavily adapted description + context for DTN/BPv7 simulation results (delivery ratios, latency, rate-aware metrics, pre-warm effects, adversarial topology, 5x/10x batteries).
+- **Why promoted**: Directly supports rigorous statistical analysis of the current experiment campaign for draft-perry-dtn-cpb.
+
+### dtn-bpv7-expert
+- **Created locally**: 2026-05-27 as part of RFC library + DTN expertise initiative
+- **Purpose**: World-class expert that *always* grounds answers in the local `~/.grok/ietf-rfcs/` library for citation accuracy. Deep knowledge of BPv7 (9171), BPSec (9172), rate-aware/CPB extensions, errata, and the current draft work.
+- **Companion**: Works extremely well with `statistical-analyst` when turning simulation numbers into defensible IETF claims.
+
+### litreview (partial)
+- **Source**: alirezarezvani/claude-skills
+- **Status**: Support files present; full workflow depends on external Consensus MCP + docx tooling. Kept for future use on literature grounding of the draft.
 
 ---
 
@@ -82,6 +95,20 @@ Hermes has particularly strong support for **self-generated and self-improving s
 - Anthropic's official skills: https://github.com/anthropics/skills
 - agentskills.io specification + examples: https://agentskills.io
 - Composio skills pack (excellent for tool integrations): https://github.com/ComposioHQ/skills
+
+---
+
+## New Local Infrastructure (2026-05-27)
+
+### IETF/RFC Library
+- **Location**: `~/.grok/ietf-rfcs/`
+- **Purpose**: Authoritative offline copies of RFCs + drafts to eliminate citation drift and hallucinated references.
+- **Current holdings** (core DTN family): RFC 9171 (BPv7), 9172 (BPSec), 9174 (TCPCLv4), 8949 (CBOR), 5050 (historic BPv6) — both .txt and .xml where available.
+- **Tools**: `tools/fetch-rfc` and `tools/fetch-draft`
+- **Expert layer**: `dtn-bpv7-expert` skill (see Fully Imported above)
+- **Catalog**: `CATALOG.md` inside the library tracks retrieval dates and errata status.
+
+This directly addresses the problem of web searches mixing versions and breaking proper IETF citations.
 
 ---
 
