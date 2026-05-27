@@ -1,0 +1,13 @@
+# Temporary clones
+/tmp/claude-skills
+/tmp/openclaw
+/tmp/hermes
+
+# Scratch
+scratch/
+*.tmp
+*.log
+
+# Don't commit huge numbers of skills we haven't curated
+imported/*/*/*
+!imported/.gitkeep

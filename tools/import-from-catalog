@@ -1,0 +1,32 @@
+#!/bin/bash
+# import-from-catalog
+# Helper to copy a skill from the imported/ tree into ~/.grok/skills/
+# Usage: import-from-catalog <path-under-imported> [new-name]
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <imported/path/to/skill> [optional-new-name]"
+  echo "Example: $0 engineering/security-auditor"
+  echo "Example: $0 research/deep-research my-deep-research"
+  exit 1
+fi
+
+IMPORTED_PATH="$HOME/.grok/skills-catalog/imported/$1"
+SKILL_NAME="${2:-$(basename "$1")}"
+
+if [ ! -d "$IMPORTED_PATH" ]; then
+  echo "Error: $IMPORTED_PATH does not exist"
+  exit 1
+fi
+
+TARGET="$HOME/.grok/skills/$SKILL_NAME"
+
+if [ -e "$TARGET" ]; then
+  echo "Warning: $TARGET already exists. Aborting to avoid overwrite."
+  exit 1
+fi
+
+cp -r "$IMPORTED_PATH" "$TARGET"
+echo "Imported $1 → ~/.grok/skills/$SKILL_NAME"
+echo "You may want to review/tune the description in $TARGET/SKILL.md for better auto-triggering."
