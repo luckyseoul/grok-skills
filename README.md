@@ -1,68 +1,61 @@
 # Grok Skills Catalog
 
-**One-command setup on a new machine/window:**
+**One command on a new laptop:**
 
 ```bash
-git clone <your-catalog-remote> ~/.grok/skills-catalog
+git clone <your-repo-url> ~/.grok/skills-catalog
 cd ~/.grok/skills-catalog
 ./setup.sh
 ```
 
-Then restart Grok. Your custom skills (dtn-bpv7-expert, statistical-analyst, pwnow, etc.) will be available.
+Then restart Grok. Your custom skills (dtn-bpv7-expert, statistical-analyst, pwnow, sudo, etc.) will be available.
 
 ---
 
-## What This Is
+## What This Gives You
 
-A portable, version-controlled home for:
-- High-quality skills you've decided to fully import (in `imported/`)
-- References to other useful skills you don't want to bloat your environment with (in `references/`)
-- The local IETF/RFC reference library (optional, ~21MB)
-- Your own custom skills (dtn-bpv7-expert, etc.)
+- Your high-value custom skills installed into `~/.grok/skills/`
+- Easy access to the local IETF/RFC reference library (optional during setup)
+- A single place to manage and version your Grok environment across machines
 
-## On a New System
+## Full Setup (New Machine)
 
-1. Clone this repo to `~/.grok/skills-catalog`
-2. Run `./setup.sh`
-3. Restart Grok
+```bash
+git clone <your-repo-url> ~/.grok/skills-catalog
+cd ~/.grok/skills-catalog
+./setup.sh
+```
 
-The setup script symlinks the good skills into `~/.grok/skills/` so Grok picks them up.
+The `setup.sh` will ask if you also want the IETF reference library (~21MB).
+
+## Updating Skills Later
+
+After cloning, just pull and re-run setup:
+
+```bash
+cd ~/.grok/skills-catalog
+git pull
+./setup.sh
+```
 
 ## Structure
 
-```
-~/.grok/skills-catalog/
-├── setup.sh                 # Run this on new machines
-├── imported/                # Skills you actively use (symlinked by setup.sh)
-├── references/              # "I might need this someday" notes
-├── sources/                 # Where things originally came from
-├── tools/
-│   └── import-from-catalog  # Helper for bringing in new skills
-├── CATALOG.md               # Master list of everything
-└── README.md
-```
+- `imported/` — Skills that get installed on every machine
+- `references/` — Notes on other useful skills (not auto-installed)
+- `setup.sh` — The only script you need to run on new machines
+- `CATALOG.md` — Master list of everything tracked here
 
-## Adding a New Skill
+## For This Project
 
-1. Find a good one (alirezarezvani/claude-skills, OpenClaw, etc.)
-2. Copy the skill folder into `imported/<category>/<name>/`
-3. Update `CATALOG.md`
-4. Run `./setup.sh` again (or manually symlink)
-
-## IETF / RFC Library
-
-If you want the full local copy of RFCs, style guides, xml2rfc docs, cbor2, etc.:
+If you're working on `draft-perry-dtn-cpb`, also run (after cloning the project):
 
 ```bash
-# During setup.sh it will ask
-# Or manually:
-ln -s ~/.grok/skills-catalog/ietf-rfcs ~/.grok/ietf-rfcs
+cd ~/draft-perry-dtn-cpb
+./scripts/grok-bootstrap.sh
 ```
 
-See `ietf-rfcs/CATALOG.md` and `ietf-rfcs/README.md` for what's in there.
+This adds a few extra project-specific skills on top of the catalog.
 
-## Philosophy
+---
 
-Keep the bloat low. Only fully import things you use constantly. Everything else lives as a precise reference so you can pull it in 10 seconds when you actually need it.
-
-This way you can open Grok on a fresh machine and not feel completely naked.
+**This repo is your portable Grok environment.** Clone it on any new machine and you're back in business with almost no handholding.
