@@ -91,4 +91,6 @@ Hermes has particularly strong support for **self-generated and self-improving s
 - Always record **why** we imported or referenced something (context from the chat where it became useful).
 - For skills we adapt (especially tuning the `description` field for Grok), keep the original in `imported/<original-name>/` and the adapted version in `~/.grok/skills/`.
 
+See `references/example-security-auditor.md` for the exact format we use for reference-only entries.
+
 Last updated: 2026-05-27 (initial catalog setup)
