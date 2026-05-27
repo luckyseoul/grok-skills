@@ -125,3 +125,11 @@ This directly addresses the problem of web searches mixing versions and breaking
 See `references/example-security-auditor.md` for the exact format we use for reference-only entries.
 
 Last updated: 2026-05-27 (initial catalog setup)
+
+## Fully Imported (Project-Specific)
+
+### probabilistic-routing-debugger
+- **Location**: imported/dtn/probabilistic-routing-debugger/
+- **Added**: 2026-05-27
+- **Purpose**: Helps troubleshoot why probabilistic protocols (PROPHET, Spray) produce results that are too similar to cpb/cpb-risk or each other in rate-aware adversarial simulations. Focuses on contact-plan dominance, probability calculation issues, spray counter behavior, and interaction with confidence/rate costing.
+- **Context**: Created during analysis of the soulkiller 5heavy 5x runs where cpb / cpb-risk / spray showed nearly identical delivery and latency numbers.
