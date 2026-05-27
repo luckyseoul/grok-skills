@@ -103,9 +103,13 @@ Hermes has particularly strong support for **self-generated and self-improving s
 ### IETF/RFC Library
 - **Location**: `~/.grok/ietf-rfcs/`
 - **Purpose**: Authoritative offline copies of RFCs + drafts to eliminate citation drift and hallucinated references.
-- **Current holdings** (core DTN family): RFC 9171 (BPv7), 9172 (BPSec), 9174 (TCPCLv4), 8949 (CBOR), 5050 (historic BPv6) — both .txt and .xml where available.
+- **Current holdings**:
+  - Core DTN/BPv7 family: RFC 9171, 9172, 9174, 8949 (CBOR), 5050 (full txt + xml)
+  - Style & GitHub process: RFC 7322, 8874, 8875 + living guides (authors.ietf.org, RFC Editor style)
+  - **XML coding guide** (most important for writing the draft): RFC 7991 (the xml2rfc v3 vocabulary) + 7992–7996 + full `external/xml2rfc/` clone from ietf-tools
+  - External references: full `external/cbor2/` clone (deterministic encoding docs)
 - **Tools**: `tools/fetch-rfc` and `tools/fetch-draft`
-- **Expert layer**: `dtn-bpv7-expert` skill (see Fully Imported above)
+- **Expert layer**: `dtn-bpv7-expert` skill (see Fully Imported above) — now also routes XML authoring, CBOR determinism, and GitHub process questions to the right local files
 - **Catalog**: `CATALOG.md` inside the library tracks retrieval dates and errata status.
 
 This directly addresses the problem of web searches mixing versions and breaking proper IETF citations.
