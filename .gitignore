@@ -8,6 +8,9 @@ scratch/
 *.tmp
 *.log
 
-# Don't commit huge numbers of skills we haven't curated
-imported/*/*/*
-!imported/.gitkeep
+# Local IETF mirror if present (optional large tree — keep out of default push)
+ietf-rfcs/
+
+# Skill evolution backups (local only)
+imported/**/versions/**
+!imported/**/versions/.gitkeep
