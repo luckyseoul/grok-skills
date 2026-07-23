@@ -8,7 +8,8 @@ cd ~/.grok/skills-catalog
 ./setup.sh
 ```
 
-Then restart Grok. Your custom skills (dtn-bpv7-expert, statistical-analyst, pwnow, sudo, etc.) will be available.
+Then restart Grok. Your custom skills (dtn-bpv7-expert, statistical-analyst, goal-verifier,
+self-refine-loop, skill-evolver, abliteration, pwnow, sudo, etc.) will be available.
 
 ---
 

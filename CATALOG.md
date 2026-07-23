@@ -28,6 +28,29 @@ Format for entries:
 - **Source**: alirezarezvani/claude-skills
 - **Status**: Support files present; full workflow depends on external Consensus MCP + docx tooling. Kept for future use on literature grounding of the draft.
 
+### goal-verifier (`imported/meta/`)
+- **Created locally**: 2026-07-23
+- **Purpose**: Goal restatement + acceptance criteria + evidence-based PASS/FAIL (pairs with `check-work` for code focus).
+- **Triggers**: verify goal, confirm success, did we finish, /goal-verifier
+
+### self-refine-loop (`imported/meta/`)
+- **Created locally**: 2026-07-23
+- **Purpose**: On-demand generator→critique→revise loop (max 5 iters, score ≥8 stop). Strict triggers only.
+- **Triggers**: self-refine, critique and revise, polish this draft, /self-refine-loop
+
+### skill-evolver (`imported/meta/`)
+- **Created locally**: 2026-07-23
+- **Purpose**: Upgrade existing skills to house quality with versioned backups + 10-dimension rubric (`references/evolution-guide.md`).
+- **Triggers**: evolve skill, upgrade SKILL.md, /skill-evolver
+
+### abliteration (`imported/models/`)
+- **Created locally**: 2026-07-23
+- **Purpose**: Rare, ethically gated local-model refusal-direction orthogonalization for over-refusal on legitimate technical/patent/lab work. Soulkiller paths in `references/local-paths.md`.
+- **Triggers**: abliterate, over-refusal, /abliteration
+- **Not for**: everyday chat, API jailbreaks, operational crime assistance
+
+Install notes for the July 2026 meta pack: `imported/meta/README-top-skills-install.md`
+
 ---
 
 ## Reference-Only Skills (High Potential)
