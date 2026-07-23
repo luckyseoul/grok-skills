@@ -1,49 +1,62 @@
 #!/bin/bash
-# One-time (or per-machine) setup for your Grok skills environment.
-# Run this on a new system after cloning the catalog.
+# Install / refresh Grok skills from this catalog into ~/.grok/skills.
+# Safe: does not delete skills that are not in the catalog.
+# Uses real directory copies (not symlinks) so the machine keeps working
+# if the catalog clone moves.
 
-set -e
+set -euo pipefail
 
 CATALOG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TARGET_SKILLS="$HOME/.grok/skills"
-TARGET_IETF="$HOME/.grok/ietf-rfcs"
+TARGET_SKILLS="${HOME}/.grok/skills"
+TARGET_IETF="${HOME}/.grok/ietf-rfcs"
 
-echo "=== Setting up Grok skills environment from catalog ==="
+echo "=== Grok skills setup ==="
 echo "Catalog: $CATALOG_DIR"
+echo "Target:  $TARGET_SKILLS"
 echo ""
 
 mkdir -p "$TARGET_SKILLS"
 
-echo "Installing high-value skills (symlinked for easy updates)..."
+installed=0
 for skill_dir in "$CATALOG_DIR/imported"/*/*; do
-    if [ -d "$skill_dir" ]; then
-        skill_name=$(basename "$skill_dir")
-        target="$TARGET_SKILLS/$skill_name"
-        
-        # Remove old version if exists
-        rm -rf "$target"
-        
-        # Create symlink
-        ln -s "$skill_dir" "$target"
-        echo "  ✓ $skill_name (symlinked)"
-    fi
+  [ -d "$skill_dir" ] || continue
+  [ -f "$skill_dir/SKILL.md" ] || continue
+  skill_name="$(basename "$skill_dir")"
+  target="$TARGET_SKILLS/$skill_name"
+
+  # Replace symlink leftovers with real trees
+  if [ -L "$target" ]; then
+    rm -f "$target"
+  fi
+
+  mkdir -p "$target"
+  rsync -a --delete \
+    --exclude '.git' \
+    "$skill_dir/" "$target/"
+  echo "  ✓ $skill_name"
+  installed=$((installed + 1))
 done
 
 echo ""
-echo "Core skills installed to $TARGET_SKILLS"
+echo "Installed/refreshed $installed skills into $TARGET_SKILLS"
 
-# Optional: IETF library
 if [ -d "$CATALOG_DIR/ietf-rfcs" ]; then
-    echo ""
-    read -p "Also symlink the IETF/RFC library (~21MB)? [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        rm -rf "$TARGET_IETF"
-        ln -s "$CATALOG_DIR/ietf-rfcs" "$TARGET_IETF"
-        echo "  ✓ IETF library symlinked to $TARGET_IETF"
-    fi
+  echo ""
+  if [ -t 0 ]; then
+    read -r -p "Also install IETF/RFC library from catalog? [y/N] " reply
+  else
+    reply=N
+  fi
+  if [[ "${reply:-}" =~ ^[Yy]$ ]]; then
+    mkdir -p "$TARGET_IETF"
+    rsync -a --delete "$CATALOG_DIR/ietf-rfcs/" "$TARGET_IETF/"
+    echo "  ✓ IETF library → $TARGET_IETF"
+  fi
+elif [ -d "$TARGET_IETF" ]; then
+  echo ""
+  echo "IETF library already present at $TARGET_IETF (not in this catalog clone)."
 fi
 
 echo ""
-echo "Done. Restart your Grok session/window for skills to take effect."
-echo "You can now use: /dtn-bpv7-expert, statistical-analyst, pwnow, etc."
+echo "Done. Restart Grok (or wait for skill auto-reload) to pick up changes."
+echo "Mirror local → GitHub later with: ./tools/mirror-skills.sh"

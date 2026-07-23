@@ -1,0 +1,38 @@
+{
+  "name": "starship3",
+  "diameter": 9.0,
+  "cd0": 0.42,
+  "initial_alt": 0.0,
+  "initial_vel": [0.0, 0.0],
+  "initial_theta": 90.0,
+  "pitch_start_t": 12.0,
+  "pitch_rate": 0.35,
+  "final_pitch": 0.0,
+  "mode": "rocket",
+  "use_variable_gravity": true,
+  "use_pressure_thrust": true,
+  "stages": [
+    {
+      "name": "super-heavy",
+      "dry_mass": 250000.0,
+      "prop_mass": 3600000.0,
+      "thrust_sl": 75900000.0,
+      "thrust_vac": 82000000.0,
+      "isp_sl": 330.0,
+      "isp_vac": 370.0,
+      "mdot": null,
+      "burn_time": null
+    },
+    {
+      "name": "starship",
+      "dry_mass": 130000.0,
+      "prop_mass": 1200000.0,
+      "thrust_sl": 6900000.0,
+      "thrust_vac": 9000000.0,
+      "isp_sl": 350.0,
+      "isp_vac": 380.0,
+      "mdot": null,
+      "burn_time": null
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+[
+  {
+    "task_id": "5m-hybrid-socket-1781759822",
+    "description": "5M Chud hybrid V100+Orin direct socket <1ms (k=64, 16 Orin leaves, low overhead)",
+    "command": "USE_ORIN=1 NUM_ORIN_LEAVES=16 ORIN_ADDR=orin python chud_bs_engine.py 5000000",
+    "task_type": "terminal",
+    "start_time": 1781759822.617621,
+    "last_checked": 1781759822.6176214,
+    "status": "running",
+    "exit_code": null,
+    "last_output": "",
+    "error": null,
+    "metadata": {}
+  },
+  {
+    "task_id": "5m-hybrid-1781759397",
+    "description": "5M Chud hybrid V100+Orin (k~64, 8 Orin, tuned, progress with flush)",
+    "command": "USE_ORIN=1 NUM_ORIN_LEAVES=8 python3 chud_bs_engine.py 5000000",
+    "task_type": "terminal",
+    "start_time": 1781759397.719545,
+    "last_checked": 1781759397.7195451,
+    "status": "running",
+    "exit_code": null,
+    "last_output": "",
+    "error": null,
+    "metadata": {}
+  },
+  {
+    "task_id": "chud-5m-hybrid-1781759119",
+    "description": "5M Chud hybrid V100+Orin (k=128, 8 Orin leaves, live progress, NTT-GPU)",
+    "command": "USE_ORIN=1 NUM_ORIN_LEAVES=8 python3 chud_bs_engine.py 5000000",
+    "task_type": "terminal",
+    "start_time": 1781759119.9008448,
+    "last_checked": 1781759119.900845,
+    "status": "running",
+    "exit_code": null,
+    "last_output": "",
+    "error": null,
+    "metadata": {}
+  },
+  {
+    "task_id": "019ed918-9f0b-77f1-bd0f-0bc8053eb0b1",
+    "description": "5M digits Chudnovsky pi V100 (K=128, NTT thresh~20k, subtree BS + dmon poll, full correct file)",
+    "command": "python3 chud_bs_engine.py 5000000 > /tmp/5m.out 2>&1",
+    "task_type": "terminal",
+    "start_time": 1781758733.6096005,
+    "last_checked": 1781758733.6096008,
+    "status": "running",
+    "exit_code": null,
+    "last_output": "",
+    "error": null,
+    "metadata": {
+      "digits": 5000000
+    }
+  },
+  {
+    "task_id": "019ed918-2124-7241-a356-0c0d87f202a4",
+    "description": "5M digits Chudnovsky pi (subtree K=256, NTT-GPU >20k bits, V100, resource poll+dmon)",
+    "command": "python3 chud_bs_engine.py 5000000 > /tmp/5m.out 2>&1",
+    "task_type": "terminal",
+    "start_time": 1781758704.852729,
+    "last_checked": 1781758704.8527293,
+    "status": "running",
+    "exit_code": null,
+    "last_output": "",
+    "error": null,
+    "metadata": {
+      "digits": 5000000,
+      "target": "pi_5000000_our.txt"
+    }
+  },
+  {
+    "task_id": "019e91cb-0388-7cd3-83e9-d79924182200",
+    "description": "Wieferich 1e9 Phase 1 V100 exhaustive coverage (hunt_1e9_precomputed.py): pre-gen 45M primes, resumed Phase1 at p~429.488M, GPU b-sweep per p, 0 hits, advanced to 429.752M in 21min @13 it/s, user \"please stop\" (killed). Log left as record. Ckpt updated, results unchanged. GPU idle. Resumable.",
+    "command": "cd /home/nick/wieferich-hunts && python3 -u hunt_1e9_precomputed.py 2>&1 | tee -a hunt_1e9_precomputed.log",
+    "task_type": "terminal",
+    "start_time": 1780562792.900744,
+    "last_checked": 1780563792.900744,
+    "status": "failed",
+    "exit_code": 137,
+    "last_output": "Phase 1: p=429,752,159 (36.6%) | 0 hits | 13 primes/s | ETA 611.0h",
+    "error": "killed by user (please stop)",
+    "metadata": {
+      "project": "wieferich",
+      "p_final": 429752159,
+      "hits_in_window": 0,
+      "rate": "13 primes/s",
+      "duration_s": 1253.55,
+      "resumable": true,
+      "ckpt": "1,429752159"
+    }
+  },
+  {
+    "task_id": "019e91ce-6a5b-7f22-870f-7792b3b2f1f2",
+    "description": "Monitor: filtered Phase 1 progress from hunt_1e9_precomputed.log (startup + 60s reports)",
+    "command": "tail -f -n 0 /home/nick/wieferich-hunts/hunt_1e9_precomputed.log | grep --line-buffered -E \"(Resuming|Phase 1:|hits|ETA)\"",
+    "task_type": "monitor",
+    "start_time": 1780562792.900744,
+    "last_checked": 1780563792.900744,
+    "status": "failed",
+    "exit_code": null,
+    "last_output": "(no output yet)",
+    "error": "parent hunt stopped",
+    "metadata": {
+      "project": "wieferich",
+      "filter": "Phase 1 progress"
+    }
+  },
+  {
+    "task_id": "orin-5x-baseline-cpu-1779833937",
+    "description": "Orin 5x baseline CPU -j 5 | STATUS: Running normally (last log update ~17:19 local)",
+    "command": "python3 config1_sim.py --battery 5x --strategy baseline --accelerator cpu -j 5",
+    "task_type": "terminal",
+    "start_time": 1779835054.355401,
+    "last_checked": 1779835054.3554013,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "node": "orin",
+      "status": "running"
+    }
+  },
+  {
+    "task_id": "orin-5x-numba-efficient-1779833936",
+    "description": "Orin 5x + numba -j 5 | STATUS: Hitting Numba/PyTorch _ARRAY_API errors (library compatibility issue on this Jetson image). Not producing valid results yet.",
+    "command": "python3 config1_sim.py --battery 5x --accelerator numba -j 5",
+    "task_type": "terminal",
+    "start_time": 1779835054.3545458,
+    "last_checked": 1779835054.354546,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "node": "orin",
+      "status": "error",
+      "issue": "Numba CUDA compatibility"
+    }
+  },
+  {
+    "task_id": "orin-5x-baseline-cpu-1779833936",
+    "description": "Orin 5x baseline (no CPB) cpu -j 5 for direct comparison",
+    "command": "ssh to orin and run config1_sim.py --battery 5x --strategy baseline --accelerator cpu -j 5",
+    "task_type": "terminal",
+    "start_time": 1779833936.9000635,
+    "last_checked": 1779833936.9000638,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "node": "orin",
+      "accelerator": "cpu",
+      "workers": 5,
+      "strategy": "baseline"
+    }
+  },
+  {
+    "task_id": "019e665c-7f6f-7822-9828-0bd9bfb31b8f",
+    "description": "Big 5x experimental with CUDA accel on V100",
+    "command": "config1_sim.py --battery 5x --accelerator cuda",
+    "task_type": "terminal",
+    "start_time": 1779833801.9466345,
+    "last_checked": 1779833801.9466352,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "019e665c-76e5-7a20-9378-594245cf3068",
+    "description": "Big 5x with Numba CPU accel - main CPB + accel comparison run",
+    "command": "config1_sim.py --battery 5x --accelerator numba",
+    "task_type": "terminal",
+    "start_time": 1779833801.9448884,
+    "last_checked": 1779833801.944889,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "big-5x-cuda-attempt-1779833793",
+    "description": "Attempt big 5x with --accelerator cuda (will fall back gracefully if not fully wired for policy loops)",
+    "command": "cd /home/nick/draft-perry-dtn-cpb/impl && python3 config1_sim.py --battery 5x --accelerator cuda --csv big_5x_cuda_attempt.csv",
+    "task_type": "terminal",
+    "start_time": 1779833793.6152678,
+    "last_checked": 1779833793.615268,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "scale": "5x",
+      "accelerator": "cuda",
+      "note": "experimental"
+    }
+  },
+  {
+    "task_id": "big-5x-numba-cpb-protocols-1779833793",
+    "description": "Big 5x battery with --accelerator numba for CPB protocols (baseline cpu + advanced with Numba CPU accel)",
+    "command": "cd /home/nick/draft-perry-dtn-cpb/impl && python3 config1_sim.py --battery 5x --accelerator numba --csv big_5x_numba_results.csv",
+    "task_type": "terminal",
+    "start_time": 1779833793.6145275,
+    "last_checked": 1779833793.6145277,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "scale": "5x",
+      "accelerator": "numba",
+      "focus": "cpb protocols with CPU accel"
+    }
+  },
+  {
+    "task_id": "accel-comparison-cpu-vs-numba-1779833480",
+    "description": "Controlled comparison: baseline(cpu) vs cpb(cpu) vs cpb(numba) on same seeds + massive topology",
+    "command": "python3 config1_sim.py with different --strategy and --accelerator combos",
+    "task_type": "terminal",
+    "start_time": 1779833480.471982,
+    "last_checked": 1779833480.4719822,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "019e664c-40c0-7bd3-8319-df5c166c9b22",
+    "description": "Final 5x all-protocols battery (60 seeds, 1.2M bundles/rover, 6 protocols) - the definitive comparison run",
+    "command": "python3 config1_sim.py --battery 5x",
+    "task_type": "terminal",
+    "start_time": 1779832738.3573914,
+    "last_checked": 1779833204.5469482,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "Final 5x battery completed successfully in 456s. All 5 advanced protocols showed strong, consistent gains over baseline (delivery +2.33%, avg latency -31s, p95 -333s). Results in final_5x_battery_results.csv",
+    "error": null,
+    "metadata": {
+      "friendly_id": "final-battery-5x-all-protocols-1779832730"
+    }
+  },
+  {
+    "task_id": "final-battery-5x-all-protocols-1779832730",
+    "description": "Final authoritative battery run: --battery 5x (60 seeds, 1.2M bundles/rover, massive topology, all 6 protocols: baseline/cpb/cpb-risk/prophet/maxprop/spray) with latest adversarial generator + multiprocessing",
+    "command": "cd /home/nick/draft-perry-dtn-cpb/impl && python3 config1_sim.py --battery 5x --csv final_5x_battery_results.csv",
+    "task_type": "terminal",
+    "start_time": 1779832730.9835827,
+    "last_checked": 1779833204.5476992,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "Final 5x battery completed successfully in 456s. All 5 advanced protocols showed strong, consistent gains over baseline (delivery +2.33%, avg latency -31s, p95 -333s). Results in final_5x_battery_results.csv",
+    "error": null,
+    "metadata": {
+      "scale": "5x",
+      "seeds": 60,
+      "protocols": 6,
+      "bundles_per_rover": 1200000,
+      "purpose": "Final comparison of all DTN protocols"
+    }
+  },
+  {
+    "task_id": "sync-report-tool-1779832674",
+    "description": "Created sync-report.sh + enhanced sync-sim.sh for cross-node change/capability reporting between soulkiller and orin (e.g. GPU acceleration status)",
+    "command": "sync-report.sh",
+    "task_type": "terminal",
+    "start_time": 1779832674.1066115,
+    "last_checked": 1779832674.1066117,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "files": [
+        "sync-report.sh",
+        "sync-sim.sh",
+        "SYNC-TOOLS.md"
+      ],
+      "purpose": "Keep both DTN nodes informed of changes and new capabilities"
+    }
+  },
+  {
+    "task_id": "accel-phase1-1779832621",
+    "description": "Numba acceleration Phase 1: Added predicted_arrival_numba, next_window_open_numba, and _numba_evaluate_candidates based on real profiling data from massive topology run",
+    "command": "Editing config1_sim.py for Numba acceleration",
+    "task_type": "terminal",
+    "start_time": 1779832621.8324344,
+    "last_checked": 1779832621.8324347,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "sync-sim-tool-created-1779832569",
+    "description": "Created sync-sim.sh - bidirectional rsync tool for keeping DTN simulator (config1_sim.py + results) in sync with Orin over Tailscale",
+    "command": "./sync-sim.sh",
+    "task_type": "terminal",
+    "start_time": 1779832569.7187393,
+    "last_checked": 1779832569.7187395,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "location": "/home/nick/draft-perry-dtn-cpb/impl/sync-sim.sh",
+      "features": [
+        "push",
+        "pull",
+        "dry-run",
+        "code-only",
+        "sshpass"
+      ]
+    }
+  },
+  {
+    "task_id": "sim-accelerator-work-1779832515",
+    "description": "GPU/Numba acceleration work on config1_sim.py (Phase 1: Numba JIT foundation + --accelerator flag)",
+    "command": "Editing config1_sim.py to support cpu/numba/cuda backends",
+    "task_type": "terminal",
+    "start_time": 1779832515.6275945,
+    "last_checked": 1779832515.6275947,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "phase": 1,
+      "status": "in_progress"
+    }
+  },
+  {
+    "task_id": "019e6641-95e8-7d81-bfd5-5e694696f386",
+    "description": "Fixed 5x all DTN protocols run (adversarial confidences + differentiated policies)",
+    "command": "config1_sim.py --battery 5x",
+    "task_type": "terminal",
+    "start_time": 1779832036.991667,
+    "last_checked": 1779832036.9916675,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "friendly_id": "fixed-5x-all-protocols-1779832032"
+    }
+  },
+  {
+    "task_id": "fixed-5x-all-protocols-1779832032",
+    "description": "Corrected 5x simulation with adversarial confidences + differentiated policies (baseline,cpb,cpb-risk,prophet,maxprop,spray)",
+    "command": "python3 config1_sim.py --battery 5x --csv 5x_fixed_results.csv",
+    "task_type": "terminal",
+    "start_time": 1779832032.6279173,
+    "last_checked": 1779832032.6279175,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "019e6629-a889-7571-bf92-7ff1ba173227",
+    "description": "5x all DTN protocols sim (baseline,cpb,cpb-risk,prophet,maxprop,spray) - 60 seeds, 1.2M bundles, massive topology",
+    "command": "python3 config1_sim.py --battery 5x",
+    "task_type": "terminal",
+    "start_time": 1779830487.6788828,
+    "last_checked": 1779830921.0398843,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "5x all-protocols run completed in 425.7s. All 5 advanced protocols (cpb, cpb-risk, maxprop, prophet, spray) identical and dramatically better than baseline: +0.463% delivery, -55s avg latency, -229s p95.",
+    "error": null,
+    "metadata": {
+      "user_id": "5x-mix-all-protocols-1779830458"
+    }
+  },
+  {
+    "task_id": "5x-mix-all-protocols-1779830458",
+    "description": "5x scope massive sim: 60 seeds, 1.2M bundles/rover, 12r/8o/2r/6g topology, 6 protocols (baseline + cpb + cpb-risk + prophet + maxprop + spray), multiprocessing",
+    "command": "cd /home/nick/draft-perry-dtn-cpb/impl && python3 config1_sim.py --battery 5x --csv 5x_all_protocols_results.csv",
+    "task_type": "terminal",
+    "start_time": 1779830458.7748938,
+    "last_checked": 1779830921.040399,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "5x all-protocols run completed in 425.7s. All 5 advanced protocols (cpb, cpb-risk, maxprop, prophet, spray) identical and dramatically better than baseline: +0.463% delivery, -55s avg latency, -229s p95.",
+    "error": null,
+    "metadata": {
+      "scope": "5x-massive",
+      "protocols": 6,
+      "seeds": 60,
+      "bundles_per_rover": 1200000,
+      "topology": "12r-8o-2rel-6g"
+    }
+  },
+  {
+    "task_id": "019e6622-cd31-71d3-b922-1d9ece39bffd",
+    "description": "10x massive CPB simulation (30 seeds, 12 rovers/8 orbiters/2 relays/6 grounds, 3 policies) - MULTIPROCESSING ENABLED",
+    "command": "python3 config1_sim.py --battery massive",
+    "task_type": "terminal",
+    "start_time": 1779830020.2119513,
+    "last_checked": 1779830151.4742002,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "Completed successfully. 30 seeds, massive 10x topology, 86 workers, 127s walltime. Strong CPB advantage in delivery (+0.463%) and latency (avg -55s, p95 -229s).",
+    "error": null,
+    "metadata": {
+      "scale": "10x",
+      "parallel": true,
+      "user_tracker_id": "massive-10x-parallel-1779830015"
+    }
+  },
+  {
+    "task_id": "massive-10x-parallel-1779830015",
+    "description": "10x massive CPB simulation (30 seeds, 12 rovers/8 orbiters/2 relays/6 grounds, 3 policies, multiprocessing on 88 cores)",
+    "command": "cd /home/nick/draft-perry-dtn-cpb/impl && python3 config1_sim.py --battery massive --csv massive_10x_parallel.csv",
+    "task_type": "terminal",
+    "start_time": 1779830015.7359912,
+    "last_checked": 1779830151.474639,
+    "status": "completed",
+    "exit_code": 0,
+    "last_output": "Completed successfully. 30 seeds, massive 10x topology, 86 workers, 127s walltime. Strong CPB advantage in delivery (+0.463%) and latency (avg -55s, p95 -229s).",
+    "error": null,
+    "metadata": {
+      "scale": "10x",
+      "seeds": 30,
+      "rovers": 12,
+      "policies": 3,
+      "parallel": true,
+      "cores": 88
+    }
+  },
+  {
+    "task_id": "019e661f-d6df-7b01-991e-1a16a6ea39c4",
+    "description": "10x massive CPB simulation: 30 seeds + 12 rovers + 8 orbiters + 2 relays + 6 grounds + 3 policies (~7+ million bundles total)",
+    "command": "python3 config1_sim.py --battery massive",
+    "task_type": "terminal",
+    "start_time": 1779829825.977904,
+    "last_checked": 1779829825.9779043,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {
+      "scale": "10x",
+      "policies": 3,
+      "rovers": 12,
+      "orbiters": 8
+    }
+  },
+  {
+    "task_id": "orin-remote-restart-1779827417",
+    "description": "Remote ION restart on Orin (268485121) with full symmetric contact plan to soulkiller (268485122)",
+    "command": "sshpass + start-orin.sh on 100.70.177.14",
+    "task_type": "terminal",
+    "start_time": 1779827417.5885508,
+    "last_checked": 1779827417.5885508,
+    "status": "stopped",
+    "exit_code": 0,
+    "last_output": "",
+    "error": "Stopped by user request: stop all tasks watchers and loops",
+    "metadata": {}
+  },
+  {
+    "task_id": "019e65f8-c10f-7871-bcab-aa737e9c41c4",
+    "description": "bpsink receiver on soulkiller ipn:268485122.1 for live DTN bundle testing with Orin",
+    "command": "/usr/local/bin/bpsink ipn:268485122.1",
+    "task_type": "terminal",
+    "start_time": 1779827265.0877833,
+    "last_checked": 1779827532.5737042,
+    "status": "completed",
+    "exit_code": 124,
+    "last_output": "(no output - bpsink listener, timed out after 120s as expected)",
+    "error": null,
+    "metadata": {}
+  }
+]

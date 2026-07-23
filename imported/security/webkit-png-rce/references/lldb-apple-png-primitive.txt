@@ -1,0 +1,34 @@
+# Soulkiller lldb guide for WebKit PNG rowAvailable OOB primitive (Apple $2M)
+# Target: once VM is up with 9p corpus mounted, copy candidates, open in Safari, attach lldb.
+
+# 1. Launch Safari with a candidate (or qlmanage for quick decode)
+# /Applications/Safari.app/Contents/MacOS/Safari --args file:///Users/user/hitting_candidates/drive_hit_....png
+
+# 2. Attach
+# lldb -p $(pgrep Safari) -n Safari
+
+# 3. Break on the exact vulnerable write path (from source analysis)
+breakpoint set --name PNGImageDecoder::rowAvailable
+# or more precise:
+# breakpoint set --file PNGImageDecoder.cpp --line 507   # the interlaceBuffer indexing line
+# breakpoint set --file PNGImageDecoder.cpp --line 509   # row = interlaceBuffer + (rowIndex * ...
+
+# 4. When hit, inspect for OOB
+# (lldb) p rowIndex
+# (lldb) p size().height()
+# (lldb) p colorChannels
+# (lldb) p size().width()
+# (lldb) p (char*)interlaceBuffer
+# (lldb) p/x (uint64_t)(row - interlaceBuffer)   # offset into buffer; if >> allocated size -> OOB
+# (lldb) p buffer.backingStore()   # the destination write target
+
+# 5. Watch for the write
+# (lldb) watchpoint set expression -- (char*)destinationRow.data()   # or the address var
+
+# 6. Once primitive confirmed (write with controlled offset/value), extract:
+# - Controlled write address relative to heap object
+# - Value control (pixel bytes from the row data)
+# - Next: escape via Mach ports / IOSurface from escape_research.md
+
+# Run with high-volume candidates from soulkiller-primitive-filter.py first.
+# Report offsets + crash details back via ci.

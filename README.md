@@ -1,62 +1,40 @@
 # Grok Skills Catalog
 
-**One command on a new laptop:**
+Portable mirror of your **user** Grok skills (`~/.grok/skills`).
+
+## New machine
 
 ```bash
-git clone <your-repo-url> ~/.grok/skills-catalog
-cd ~/.grok/skills-catalog
+git clone https://github.com/luckyseoul/grok-skills.git ~/Projects/grok/grok-skills
+cd ~/Projects/grok/grok-skills
 ./setup.sh
 ```
 
-Then restart Grok. Your custom skills (dtn-bpv7-expert, statistical-analyst, goal-verifier,
-self-refine-loop, skill-evolver, abliteration, pwnow, sudo, etc.) will be available.
+Restart Grok (or wait for skill auto-reload).
 
----
+## Keep local and GitHub in sync
 
-## What This Gives You
-
-- Your high-value custom skills installed into `~/.grok/skills/`
-- Easy access to the local IETF/RFC reference library (optional during setup)
-- A single place to manage and version your Grok environment across machines
-
-## Full Setup (New Machine)
+After editing skills under `~/.grok/skills` (or after pulling this repo):
 
 ```bash
-git clone <your-repo-url> ~/.grok/skills-catalog
-cd ~/.grok/skills-catalog
-./setup.sh
+cd ~/Projects/grok/grok-skills
+./tools/mirror-skills.sh
+git add -A && git status
+git commit -m "mirror: refresh skills"
+git push
 ```
 
-The `setup.sh` will ask if you also want the IETF reference library (~21MB).
+## Layout
 
-## Updating Skills Later
+| Path | Purpose |
+|------|---------|
+| `imported/<category>/<skill>/` | Full skill trees |
+| `setup.sh` | Install catalog → `~/.grok/skills` (safe) |
+| `tools/mirror-skills.sh` | Bidirectional local ↔ catalog |
+| `CATALOG.md` | Inventory |
 
-After cloning, just pull and re-run setup:
+## Notes
 
-```bash
-cd ~/.grok/skills-catalog
-git pull
-./setup.sh
-```
-
-## Structure
-
-- `imported/` — Skills that get installed on every machine
-- `references/` — Notes on other useful skills (not auto-installed)
-- `setup.sh` — The only script you need to run on new machines
-- `CATALOG.md` — Master list of everything tracked here
-
-## For This Project
-
-If you're working on `draft-perry-dtn-cpb`, also run (after cloning the project):
-
-```bash
-cd ~/draft-perry-dtn-cpb
-./scripts/grok-bootstrap.sh
-```
-
-This adds a few extra project-specific skills on top of the catalog.
-
----
-
-**This repo is your portable Grok environment.** Clone it on any new machine and you're back in business with almost no handholding.
+- **Bundled** product skills live in `~/.grok/bundled/skills/` and are **not** mirrored here.
+- `setup.sh` never deletes skills that are only on the machine and not in this catalog.
+- DTN work: `dtn-bpv7-expert`, `probabilistic-routing-debugger`, `statistical-analyst`, `ipnsig-solar-system-internet`.

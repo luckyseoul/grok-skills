@@ -14,3 +14,7 @@ ietf-rfcs/
 # Skill evolution backups (local only)
 imported/**/versions/**
 !imported/**/versions/.gitkeep
+
+__pycache__/
+*.pyc
+*.pyo

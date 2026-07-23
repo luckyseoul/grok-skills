@@ -1,0 +1,31 @@
+{
+  "name": "hypothetical-battery-ssto",
+  "diameter": 1.6,
+  "cd0": 0.38,
+  "initial_alt": 0.0,
+  "initial_vel": [0.0, 0.0],
+  "initial_theta": 90.0,
+  "pitch_start_t": 8.0,
+  "pitch_rate": 0.55,
+  "final_pitch": 25.0,
+  "mode": "electric",
+  "electric_power_w": 4500000.0,
+  "electric_isp": 420.0,
+  "electric_eff": 0.58,
+  "battery_energy_j": 4.5e9,
+  "use_variable_gravity": true,
+  "use_pressure_thrust": false,
+  "stages": [
+    {
+      "name": "main",
+      "dry_mass": 65.0,
+      "prop_mass": 95.0,
+      "thrust_sl": 0,
+      "thrust_vac": 0,
+      "isp_sl": 0,
+      "isp_vac": 0,
+      "mdot": null,
+      "burn_time": null
+    }
+  ]
+}

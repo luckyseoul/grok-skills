@@ -1,0 +1,26 @@
+{
+  "name": "sounding-custom",
+  "diameter": 0.25,
+  "cd0": 0.36,
+  "initial_alt": 10.0,
+  "initial_vel": [0.0, 5.0],
+  "initial_theta": 90.0,
+  "pitch_start_t": 4.0,
+  "pitch_rate": 2.1,
+  "final_pitch": 18.0,
+  "mode": "rocket",
+  "use_variable_gravity": true,
+  "use_pressure_thrust": true,
+  "exhaust_v_frac": 0.90,
+  "stages": [
+    {
+      "name": "s1",
+      "dry_mass": 28.0,
+      "prop_mass": 165.0,
+      "thrust_sl": 9500.0,
+      "thrust_vac": 10200.0,
+      "isp_sl": 228.0,
+      "isp_vac": 245.0
+    }
+  ]
+}
