@@ -22,6 +22,13 @@ category_for() {
     pcb-design|n64-texture-video-mod) echo hardware ;;
     rocket-science) echo science ;;
     gaming-video-tap) echo ops ;;
+    github-pr-workflow|github-code-review|github-issues|github-repo-management|codebase-inspection|gh-pr-watch) echo github ;;
+    arxiv|research-paper-writing|ocr-and-documents) echo research ;;
+    architecture-diagram) echo creative ;;
+    linux-app-build-install) echo devops ;;
+    session-handoff-packager|natural-language-to-skill|privacy-redactor|oss-repo-maintainer|skill-rubric-reviewer|web-scraper|tool-discovery-engine|skill-researcher) echo meta ;;
+    ietf-design|draft-cold-review) echo dtn ;;
+    office-pandoc|plan-execute-lite|spacexai-app|workflow-rhai) echo engineering ;;
     *) echo custom ;;
   esac
 }
@@ -63,3 +70,5 @@ done
 echo ""
 echo "Local:   $(find "$LOCAL" -mindepth 1 -maxdepth 1 -type d | wc -l) dirs"
 echo "Catalog: $(find "$IMPORTED" -name SKILL.md | wc -l) SKILL.md"
+
+# Note: category_for above is the only map; re-run after edits.

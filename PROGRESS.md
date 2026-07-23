@@ -1,3 +1,4 @@
 # Progress
 
-- 2026-07-23: Full bidirectional mirror — all `~/.grok/skills` trees in `imported/`; catalog-only skills installed locally (abliteration, patent-slm, probabilistic-routing-debugger, research). Safe setup.sh + mirror-skills.sh.
+- 2026-07-23: Full bidirectional mirror of user skills.
+- 2026-07-23: MIT imports (Hermes + Stijnman) + user-owned equivalents for bundled product skills; 57 skills mirrored.
