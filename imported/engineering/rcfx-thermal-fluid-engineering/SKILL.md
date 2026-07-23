@@ -1,97 +1,55 @@
 ---
 name: rcfx-thermal-fluid-engineering
-description: Domain-rigor skill for multi-stage counter-flow fluidized bed heat exchange systems (RCFX), lunar ISRU regolith processing, He-3 extraction thermal recovery, multiphase flow under vacuum/extreme conditions, patent disclosure packets, calculation plans, uncertainty analysis, trade studies, and manuscript sections. Use for heat transfer, fluidization regimes, pressure drop, particle-gas interactions, radiative/conductive limits, scaling laws, CFD/experiment validation checks, invention support. Produces research briefs, design comparisons, methods/results drafts, provisional patent technical content, evidence packets. Triggers on RCFX, fluidized bed, lunar heat recovery, ISRU thermal, regolith processing, He-3, multiphase vacuum systems, or related patent/manuscript work.
+description: >
+  Domain-rigor judgment layer for multi-stage counter-current fluidized bed heat recovery systems under lunar ISRU constraints (low pressure ~0.14 bar, cohesive regolith Geldart C, iron shot dual thermal-mass/agitator function). Incorporates correlation validity ranges (Re, Ar, Umf, Nu), multiphase regime maps, pressure-drop/heat-transfer tradeoffs, uncertainty propagation, DEM mechanistic evidence anchors, trade studies, and invention-disclosure/patent-support packets. Triggers on RCFX, lunar fluidized bed, He-3 extraction thermal, regolith heat recovery, multiphase bed design, provisional patent thermal claims, calculation plans for bed hydrodynamics. Fuse of mechanical-engineering-research patterns with existing RCFX DEM/patent evidence.
 ---
 
 # RCFX Thermal-Fluid Engineering
 
-## Overview
+Domain judgment layer that enforces physical validity for multi-stage counter-flow fluidized bed systems designed for lunar regolith processing and heat recovery.
 
-Domain judgment layer for thermal-fluid systems in lunar and offworld ISRU contexts, centered on multi-stage counter-flow fluidized bed heat exchangers (RCFX family). Enforce physical defensibility: validity ranges of correlations, regime maps (packed → fluidized → bubbling → slugging → pneumatic), uncertainty propagation, scaling limits between DEM/CFD and full system, and explicit separation of measured vs. inferred performance under vacuum, low-g, abrasive/cohesive regolith, and extreme thermal gradients.
+## Core Mechanisms
 
-This skill layers mechanical-engineering research rigor onto ISRU-specific constraints. Prefer primary sources: NASA/DOE technical reports, peer-reviewed multiphase literature, manufacturer datasheets for high-temp materials, and prior patents. Treat marketing or uncited summaries as orientation only.
+Particle-scale: contact mechanics, gas-solid drag (consistent formulation across DEM rungs), agitation by larger iron shot particles producing bed mobilization (observed 7.32× height increase at target conditions).
 
-## Research Workflow
+Bed-scale: minimum fluidization velocity Umf, bubbling-to-slugging transitions, voidage, particle-gas and wall heat transfer coefficients, pressure drop ΔP, radiative contributions under vacuum.
 
-1. Clarify the engineering objective.
-   - System: stages, bed geometry, gas (He, Ar, N2, process gas), solid (regolith simulant properties: size distribution, density, cohesion, thermal conductivity).
-   - Operating regime: pressure (vacuum to mild overpressure), temperature bounds, gravity level, mass flow rates, target heat recovery efficiency, pressure-drop budget.
-   - Performance metrics and hard constraints (attrition, electrostatics, radiative loss, power for fans/blowers in vacuum).
-   - State assumptions explicitly when data missing; only query user for values that change the path.
+System-scale: 5-stage counter-current effectiveness (target 75.6% at ~68 W blower), material transfer between stages, low-envelope-pressure operation (0.14 bar), overall energy balance.
 
-2. Build source hierarchy.
-   - Standards/handbooks, peer-reviewed multiphase/fluidization papers, NASA technical memoranda, primary patents, validated DEM/CFD studies with mesh/particle independence.
-   - Extract equations, dimensionless groups (Re_p, Ar, Umf, Nu, Bi), material limits, empirical constants, and applicability envelopes (particle diameter, gas velocity, temperature, pressure).
+## Workflow
 
-3. Extract engineering substance and validity.
-   - Record what was measured vs. simulated vs. assumed.
-   - Flag correlation misuse (e.g., Wen-Yu or Ergun outside calibrated range for lunar-like particles).
-   - Note multiphase regime transitions and heat-transfer mechanism shifts (conduction-dominated packed → particle convection in fluidized → radiation at high T).
+1. Clarify objective: geometry, particle size distribution (iron vs regolith), gas velocity, pressure, target metrics (effectiveness, power, mobilization factor).
+2. Source hierarchy: validated DEM runs and lumped models > peer-reviewed multiphase correlations with stated limits > NASA/DOE ISRU reports > patents > textbooks. Flag any leap beyond validity ranges.
+3. Extract governing relations with explicit applicability bounds (Re_p, Archimedes, Geldart group, Umf correlations such as Wen-Yu or Ergun-derived).
+4. Map regimes and detect phase transitions (fixed → fluidized → bubbling → slug → transport).
+5. Perform trade studies: particle diameter vs velocity vs ΔP vs heat transfer vs attrition risk; iron fill fraction sensitivity.
+6. Propagate uncertainty: sensor, property variation, model form, Monte-Carlo on key parameters if data allow.
+7. Output decision-ready package with assumptions, evidence anchors, gaps, next experimental or simulation steps.
 
-4. Compare alternatives by mechanism.
-   - Explain performance differences via dominant physics (pressure drop vs. HTC trade-off, stage count vs. complexity, gas recirculation energy cost).
-   - Include manufacturability, instrumentation under vacuum, maintenance, safety (dust, electrostatic discharge), cost, and scaling.
+## Thermal-Fluid Validity Gates
 
-5. Produce decision-ready output.
-   - Lead with recommendation or state of evidence.
-   - Include assumptions, key equations with units and limits, source quality, uncertainty bounds, next verification steps (simple analytical sanity, reduced-order model, targeted DEM, or lab simulant test).
-   - Mark inference explicitly.
-
-## Thermal-Fluid & Multiphase Checks (RCFX-specific)
-
-Before finalizing any claim:
-
-- Fluidization: minimum fluidization velocity Umf (Ergun/Wen-Yu or measured), excess velocity, regime map (Geldart group for lunar regolith analogs), bed expansion, bubble size/frequency, segregation risk.
-- Heat transfer: particle-gas HTC, wall-to-bed, inter-stage recovery effectiveness; radiation contribution at >800 K; contact resistance and coating effects.
-- Pressure drop: ΔP across stages, fan/blower power in rarefied gas, choking risk.
-- Vacuum/low-g effects: mean free path vs. particle diameter (Knudsen), reduced buoyancy, altered bubble dynamics, electrostatic charging of dielectric regolith.
-- Material limits: abrasion/attrition rates, sintering/cohesion at high T, thermal stress on walls, outgassing.
-- Scaling: DEM particle count limits vs. continuum CFD validity; benchtop simulant → lunar fidelity gaps (atmosphere, gravity, composition).
-- Uncertainty: property variation with T/P, measurement error on particle size distribution, model form uncertainty.
-
-For CFD/DEM:
-- Require turbulence/particle model, wall treatment, independence study, BC specification, validation data before treating as evidence.
-- Prefer analytical or empirical bounds as first sanity check.
+- Confirm correlation used only inside stated Re, Pr, geometry, roughness, phase-change limits.
+- For CFD or DEM: mesh/resolution independence, wall treatment, convergence, consistent drag/contact models, validation against analytical or experimental anchors.
+- Experimental or simulated plans must include calibration, heat-loss correction, flow-development length, repeatability, uncertainty budget.
+- Low-pressure specific: mean free path effects, continuum breakdown, electrostatics, radiative dominance relative to conduction/convection.
+- Cohesive fines: account for agglomeration, channeling; quantify iron agitation leverage on mobilization.
 
 ## Output Patterns
 
-**Research brief**
-- Question / Bottom Line / Assumptions / Evidence (cited) / Models & Correlations (eqs + limits) / Tradeoffs / Gaps / Next Steps
-
-**Trade study / design comparison**
-- Compact matrix scored on efficiency, ΔP, complexity, scalability, risk; dominant physics explanation per cell.
-
-**Calculation plan**
-- Step-by-step equations, input ranges, sensitivity variables, expected output format, verification method.
-
-**Manuscript support**
-- Methods: geometry, properties, regime justification, model assumptions.
-- Results/Discussion: figure-led, mechanism interpretation, uncertainty, limitations specific to lunar conditions.
-
-**Invention disclosure / patent-support packet**
-- Technical description of multi-stage counter-flow architecture, novelty relative to prior art (single-stage, fixed-bed, different gas-solid contactors), key claims support (effectiveness, pressure minimization, vacuum operability), figure list, prior-art comparison table, experimental or simulation evidence summary. Defer legal claim scope and filing strategy to counsel.
-
-**Proposal narrative (NASA/DOE style)**
-- Objectives, technical approach with rigor gates, milestones, risks/mitigations, broader impact for cislunar ISRU.
-
-## Rigor Gate
-
-- Never present unvalidated high-fidelity simulation as definitive evidence.
-- Explicitly flag leaps: e.g., terrestrial correlation applied to 1/6 g vacuum without correction factor discussion.
-- Prefer reversible, auditable reasoning: every performance number traceable to equation + inputs + source.
-- For patent work: prioritize enablement detail and clear distinction from prior art over speculative performance claims.
+- Research brief: Question | Bottom line | Assumptions | Evidence (DEM rung, correlation, model) | Tradeoffs | Gaps | Next steps.
+- Calculation plan: equations, dimensionless groups, property tables, sensitivity estimates, required validation data.
+- Invention disclosure / patent support packet: technical description of mechanism, performance numbers with sources, alternative embodiments within claim scope, enablement notes.
+- Manuscript methods/results: regime maps, effectiveness curves, pressure-power trade, uncertainty bars.
+- Trade-study matrix: rows = design variables (iron size, velocity, stages, pressure); columns = metrics (effectiveness, power, mobilization, risk); cells = quantitative or directional effect with causal chain.
 
 ## Integration
 
-- Pair with existing patent-specification, patent-evidence-package, and research-paper-writing skills for full pipeline.
-- Use litreview / arxiv for prior-art and multiphase literature pulls.
-- Cross-link to local offworld-fluid-dynamics knowledge and custom-gpu-dem results when available.
+- Pull numbers and DEM results exclusively from current RCFX evidence package or validated runs.
+- Cross-reference patent-specification and patent-evidence-package skills for claim support and formal drawings.
+- For cosmology or unrelated physics, defer to other skills.
 
-## Anti-Patterns
+## Strict Rules
 
-- Applying atmospheric fluidization correlations without Knudsen or gravity correction discussion.
-- Ignoring radiation or electrostatics at lunar conditions.
-- Over-claiming efficiency without uncertainty or regime justification.
-- Treating marketing claims or unvalidated CFD as primary evidence.
+Stay inside existing claim parameters and validated operating points. Never introduce unvalidated new matter. Mark all model extrapolations. Prefer first-principles or anchored correlations over pure black-box ML surrogates unless the surrogate has explicit validation against the DEM or analytical anchors.
 
-Version: 1.0.0 (synthesized 2026-07-23 from mechanical-engineering-research patterns + RCFX/ISRU domain constraints)
+Flag every assumption and evidence gap explicitly.

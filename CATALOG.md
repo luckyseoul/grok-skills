@@ -1,6 +1,6 @@
 # Grok Skills Catalog — Master Record
 
-_Mirrored 2026-07-23. 57 skills._
+_Mirrored 2026-07-23. Updated with synthesized RCFX and critique skills. 59 skills._
 
 | Skill | Category |
 |-------|----------|
@@ -19,6 +19,7 @@ _Mirrored 2026-07-23. 57 skills._
 | `imagine` | engineering |
 | `office-pandoc` | engineering |
 | `plan-execute-lite` | engineering |
+| `rcfx-thermal-fluid-engineering` | engineering |
 | `spacexai-app` | engineering |
 | `statistical-analyst` | engineering |
 | `update` | engineering |
@@ -53,6 +54,7 @@ _Mirrored 2026-07-23. 57 skills._
 | `ocr-and-documents` | research |
 | `research` | research |
 | `research-paper-writing` | research |
+| `scientific-critique` | research |
 | `rocket-science` | science |
 | `1password-security-design` | security |
 | `bbp-video-poc` | security |
