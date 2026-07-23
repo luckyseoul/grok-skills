@@ -156,3 +156,10 @@ Last updated: 2026-05-27 (initial catalog setup)
 - **Added**: 2026-05-27
 - **Purpose**: Helps troubleshoot why probabilistic protocols (PROPHET, Spray) produce results that are too similar to cpb/cpb-risk or each other in rate-aware adversarial simulations. Focuses on contact-plan dominance, probability calculation issues, spray counter behavior, and interaction with confidence/rate costing.
 - **Context**: Created during analysis of the soulkiller 5heavy 5x runs where cpb / cpb-risk / spray showed nearly identical delivery and latency numbers.
+
+### patent-slm (`imported/models/`)
+- **Archived**: 2026-07-23 when patent SLM project was scrapped
+- **Purpose**: Local Gemma/Mistral patent QLoRA train/serve on Soulkiller (cold storage; not active)
+
+### patent domain skills (`imported/patent/`)
+- patent-drawings, patent-specification, patent-evidence-package — RCFX/USPTO workflow skills
